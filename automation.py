@@ -179,3 +179,59 @@ try:
 
 finally:
     driver.quit()
+
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# import pandas as pd
+#
+# # Define the proxy server and port
+# proxy = "http://proxyserver:port"  # Replace with your actual proxy server and port
+#
+# # Setup Selenium WebDriver with Proxy
+# options = webdriver.ChromeOptions()
+# options.add_argument(f'--proxy-server={proxy}')
+# options.headless = True  # Optional: if you do not want the browser window to appear
+#
+# driver = webdriver.Chrome(options=options)  # Ensure that the path to the ChromeDriver is correct or it's in PATH
+#
+# url = "https://www.acga-web.org/current-gift-annuity-rates"
+# driver.get(url)
+#
+# try:
+#     # Wait for the page to load and ensure the table is present
+#     WebDriverWait(driver, 10).until(
+#         EC.presence_of_element_located((By.CSS_SELECTOR, "h3 + div table"))
+#     )
+#
+#     # Select the table directly below the <h3> tag containing the specific text
+#     table = driver.find_element(By.CSS_SELECTOR, "h3 + div table")
+#
+#     # Extract data from the table
+#     rows = table.find_elements(By.TAG_NAME, "tr")
+#     data = []
+#     for row in rows:
+#         cols = row.find_elements(By.TAG_NAME, "td")
+#         if len(cols) >= 2:
+#             age1 = cols[0].text.strip()
+#             rate1 = cols[1].text.strip()
+#             data.append([age1, rate1])
+#         if len(cols) >= 4:
+#             age2 = cols[3].text.strip()
+#             rate2 = cols[4].text.strip()
+#             data.append([age2, rate2])
+#
+#     df = pd.DataFrame(data, columns=['Age', 'Rate'])
+#
+#     # Remove any header rows that may have been included
+#     df = df[df['Age'] != 'Age']
+#
+#     # Output to check
+#     print(df)
+#
+#     # Save to Excel
+#     df.to_excel('single_life_annuity_rates.xlsx', index=False)
+#
+# finally:
+#     driver.quit()
